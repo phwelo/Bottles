@@ -1,0 +1,46 @@
+<html>
+<head>
+<script>
+function getPhe(str)
+{
+if (str=="")
+  {
+  document.getElementById("txtPhe").innerHTML="";
+  return;
+  } 
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","getphe.php?q="+str,true);
+xmlhttp.send();
+}
+</script>
+</head>
+<body>
+
+<form>
+<select name="phe" onchange="getPhe(this.value)">
+<option value="">Select a person:</option>
+<option value="59">Peter Griffin</option>
+<option value="62">Lois Griffin</option>
+<option value="68">Glenn Quagmire</option>
+<option value="69">Joseph Swanson</option>
+</select>
+</form>
+<br>
+<div id="txtPhe"><b>List an amount</b></div>
+
+</body>
+</html>
